@@ -1,0 +1,119 @@
+
+\subsection{}
+
+\begin{frame}{Proposed research contributions}
+\begin{enumerate}
+    \item Analyze problems
+    \begin{itemize}
+        \item Already done
+    \end{itemize}
+    \bigskip
+    \item Analyze problems more
+    \begin{itemize}
+        \item In progress
+    \end{itemize}
+    \bigskip
+    \item More analysis
+    \begin{itemize}
+        \item In progress
+    \end{itemize}
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{Beautiful diagram}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    scale = 0.65,
+    transform shape,
+    node distance = 1.5cm and 2cm,
+    box/.style = {rectangle, draw, rounded corners, minimum width=3.5cm, minimum height=1cm, align=center},
+    class/.style = {rectangle, draw, dashed, rounded corners, minimum width=5.5cm, minimum height=3cm, align=center, anchor=north},
+    submodule/.style = {rectangle, draw, dotted, rounded corners, minimum width=2cm, minimum height=1cm, font=\small, align=center},
+    arrow/.style = {->, >=stealth, thick},
+    label/.style = {align=center, anchor=north}
+]
+
+% Main nodes
+\node[box, minimum width=4cm, minimum height=6cm, fill=CanopyLime] (mymainbox) {};
+\node[submodule, above, fill=PiMile] at (mymainbox.south) (subbox_a) {Subbox A};
+\node[submodule, below, anchor=south, fill=PiMile] at (subbox_a.north) (subbox_b) {Subbox B};
+\node[submodule, below, anchor=south, fill=PiMile] at (subbox_b.north) (subbox_c) {Subbox C};
+\node[submodule, below, anchor=south, fill=CanopyLime] at (subbox_c.north) (subbox_d) {This one, took.};
+
+\node[class, right=1cm of mymainbox] (RightBox) {};
+\node[box, above, fill=PiMile] at (RightBox.south) (subbox_righta) {New sub box};
+\node[box, below, anchor=south, fill=CanopyLime] at (subbox_righta.north) (subbox_rightb) {Subbox right B};
+
+\node[class, left=1cm of mymainbox] (leftbox) {};
+\node[box, above, fill=CanopyLime] at (leftbox.south) (subbox_lefta) {Subbox left A};
+\node[box, below, anchor=south, fill=PiMile] at (subbox_lefta.north) (subbox_leftb) {Subbox B to left};
+
+\node[box, above=1cm of mymainbox, fill=PiMile] (main2) {Above box};
+\node[box, below=1cm of mymainbox, color=GrayMatter, fill=PiMile] (main) {Alternatively, this box is\\below the others.};
+
+\node[label, below] at (RightBox.north) {Right Box};
+\node[label, below] at (leftbox.north) {Left Box};
+\node[label, below] at (mymainbox.north) {Main Box};
+
+% Arrows
+\draw[arrow, color=GrayMatter] (mymainbox) -- (main);
+\draw[arrow, color=GrayMatter] (RightBox) -- (main);
+
+\draw[arrow] (mymainbox) -- (main2);
+\draw[arrow] (RightBox) -- (main2);
+\draw[arrow] (leftbox) -- (main2);
+
+\draw[arrow] (mymainbox) -- (RightBox);
+
+\end{tikzpicture}
+\caption{Consider this diagram.}
+\end{figure}
+\end{frame}
+
+\subsection{Timeline}
+
+\begin{frame}{Research timeline}
+
+\begin{table}[htbp]
+\centering
+\scalebox{0.75}{
+\begin{tabular}{|p{1.7cm}|>{\centering\arraybackslash}p{4cm}|>{\centering\arraybackslash}p{5cm}|>{\centering\arraybackslash}p{4cm}|}
+\hline
+ & \textbf{Contribution 1}
+
+ Solve problems
+ & \textbf{Contribution 2}
+
+ Analyze results
+ & \textbf{Contribution 3}
+
+ More analysis \\
+\hline
+\textbf{8/2020} & Submit paper & \cellcolor{PiMileDark} Work & \cellcolor{PiMile} Important work on light \\
+\hline
+\textbf{9/2020} &  & \cellcolor{PiMileDark} Work & \cellcolor{PiMile} Extend light to other light sources \\
+\hline
+\textbf{10/2020} &  & \cellcolor{PiMileDark} Work, work, work, and never give up & \cellcolor{PiMile} Give up \\
+\hline
+\textbf{11/2020} & \cellcolor{PiMile} Could do some work, maybe & \cellcolor{PiMileDark} Touch the sun & \cellcolor{PiMileDark} Prepare for work \\
+\hline
+\textbf{12/2020} &  & \cellcolor{PiMileDark} Use the sun's power for good & \cellcolor{PiMileDark} Work, work, work \\
+\hline
+\textbf{1/2021} &  & \cellcolor{PiMileDark} Use the sun's power & \cellcolor{PiMileDark} Finish up work \\
+\hline
+\textbf{2/2021} &  & \cellcolor{PiMileDark} Clean up &  \\
+\hline
+\textbf{3/2021} & \multicolumn{3}{|c|}{\cellcolor{PiMileDark} Finish up all the work}  \\
+\hline
+\textbf{4/2021} & \multicolumn{3}{|c|}{\cellcolor{PiMileDark} Really finish it up} \\
+\hline
+\end{tabular}
+}
+\caption{Consider this table}
+\end{table}
+\end{frame}
+
+

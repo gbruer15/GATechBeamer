@@ -1,0 +1,23 @@
+
+\section{Bibliography}
+
+{
+\begingroup
+\makeatletter
+\def\beamer@writeslidentry{\clearpage\beamer@notesactions}
+\pretocmd\beamer@framenotesbegin{
+    \advance\textwidth\beamer@sidebarwidth
+    \hsize\textwidth
+    \columnwidth\textwidth
+    \linewidth\hsize
+}{}
+\makeatother
+\setbeamertemplate{sidebar canvas right}[vertical shading][top=Diploma,bottom=Diploma]
+\setbeamertemplate{sidebar right}{}
+\begin{frame}[t,allowframebreaks]
+\frametitle{Bibliography}
+\tiny
+\printbibliography[heading=none]
+\end{frame}
+\endgroup
+}

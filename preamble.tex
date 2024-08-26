@@ -1,0 +1,370 @@
+
+% ----------------------------------------------------------------------------------------
+%    PACKAGES AND THEMES
+% ----------------------------------------------------------------------------------------
+
+\usepackage{hyperref}
+\usepackage[controls={play,step,stop,speed}]{animate}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{multirow}
+\usepackage{media9}
+\usepackage{verbatim}
+\usepackage{mathrsfs}
+\usepackage[makeroom]{cancel}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+\usepackage{tikz}
+\usetikzlibrary{calc,patterns,shapes.geometric, arrows, positioning, fit}
+\tikzstyle{bag} = [align=center]
+
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\usepackage{algorithmic}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{animate}
+\usepackage[
+    backend=biber,
+    style=apa,
+    bibstyle=authoryear-comp,
+    citestyle=authoryear-comp,
+    mincitenames=1,
+    maxcitenames=1,
+    minbibnames=1,
+    maxbibnames=2,
+    uniquelist=false,
+    sorting=anyvt,
+    backref=true,
+    date=year,
+    isbn=false,
+    url=false,
+    doi=false,
+    eprint=false,
+    related=false,
+    nohashothers=true,
+    % subentry=true,
+]{biblatex}
+
+\usepackage{doi}
+
+\DeclareNameFormat{noyearnoetal}{%
+\ifthenelse{\value{listcount}=1}
+{%
+\ifdefvoid{\namepartgiven}{}{%
+    \ifthenelse{\namepartgivenun=1}
+    {\namepartgiveni\space}%
+    {}%
+}%
+\namepartfamily%
+}
+{}%
+\ifthenelse{\value{listcount}<\value{liststop}}
+{\addcomma\space}
+{}}
+
+\DeclareCiteCommand{\citenodate}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printnames[noyearnoetal][1-1]{labelname}%
+   ~(\printfield{year})
+   }
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\usepackage{color}
+\usepackage{xcolor}
+
+\usepackage{listings}
+
+\usepackage{bookmark}
+
+\DeclareUnicodeCharacter{2082}{\textunderscore{2}}
+
+\usepackage{colortbl}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{textalpha}
+
+\captionsetup{subrefformat=parens}
+
+\usepackage{amsfonts}
+\usepackage{etoolbox}
+\usepackage{textcomp}
+
+% Cleverref should be loaded after other stuff so that it sets up the right commands.
+\usepackage[capitalise,noabbrev]{cleveref}
+\newdimen\imageheight
+
+% Repeat an equation without copy-pasting it.%
+\newcommand\labelAndRemember[2]%
+  {\expandafter\gdef\csname labeled:#1\endcsname{#2}%
+   \label{#1}#2}%
+\newcommand\recallLabel[2][]%
+   {\csname labeled:#2\endcsname\tag{\ref{#2} #1}}%
+
+
+
+\renewcommand{\normalsize}{\fontsize{10pt}{\baselineskip}\selectfont}
+
+\definecolor{colorbrewer_green}{RGB}{27,158,119}
+
+\newenvironment{tight_enumerate}{
+\begin{enumerate}
+  \setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+}{\end{enumerate}}
+
+
+\newenvironment{tight_itemize}{
+\begin{itemize}
+  \setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+}{\end{itemize}}
+
+
+\usetheme{Madrid}
+
+\definecolor{TechMediumGold}{RGB}{164, 146, 90}
+\definecolor{TechDarkGold}{RGB}{133, 116, 55}
+\definecolor{PiMile}{RGB}{214, 219, 212}
+\definecolor{PiMileDark}{RGB}{170, 175, 168}
+\definecolor{Diploma}{RGB}{249, 246, 229}
+\definecolor{GrayMatter}{RGB}{84, 88, 90}
+\definecolor{CanopyLime}{RGB}{164, 210, 51}
+
+\usecolortheme[named=TechMediumGold]{structure}
+
+\newlength{\navMidHspace}
+\setlength{\navMidHspace}{1.875ex}
+
+\newlength{\navVspace}
+\setlength{\navVspace}{0.05cm}
+
+\newlength{\navWidth}
+\setlength{\navWidth}{12ex}
+
+\useoutertheme[right,width=\the\navWidth,height=0pt]{sidebar}
+
+% removing section names from navigation
+\makeatletter
+
+\def\sectionentry#1#2#3#4#5{% section number, section title, page
+  \beamer@xpos=0\relax%
+  \beamer@ypos=1\relax%
+  \beamer@ypos@offset=0\relax%
+  \ifnum#5=\c@part%
+  \beamer@section@set@min@width%
+  \box\beamer@sectionbox\hskip1.875ex plus 1fill%
+  \ht\beamer@sectionbox=1.875ex%
+  \dp\beamer@sectionbox=0.75ex%
+  \fi\ignorespaces}
+
+\def\navleftmargin{0.3cm}
+\def\navrightmargin{0.3cm}
+
+\def\insertnavigation#1#2{%
+  \vbox to #2{{%
+    \vskip-2.0ex
+    \usebeamerfont{section in head/foot}\usebeamercolor[fg]{section in head/foot}%
+    \beamer@xpos=0\relax%
+    \beamer@ypos=1\relax%
+    \beamer@ypos@offset=0\relax%
+    \hbox to #1{\hskip\navleftmargin\setbox\beamer@sectionbox=\hbox{\kern1sp}%
+      \ht\beamer@sectionbox=1.875ex%
+      \dp\beamer@sectionbox=0.75ex%
+        \hskip-1.875ex plus-1fill%
+        \global\beamer@section@min@dim\z@
+        \dohead%
+        \beamer@section@set@min@width
+      \box\beamer@sectionbox\hfil\hskip\navrightmargin}%
+  }}}
+
+\def\sidenavleftmargin{1ex}
+\def\sidenavrightmargin{3ex}
+
+\def\insertsidebarnavigation#1#2{%
+  \vbox to #2{{%
+    \vskip-2.0ex
+    \usebeamerfont{section in head/foot}\usebeamercolor[fg]{section in head/foot}%
+    \beamer@xpos=0\relax%
+    \beamer@ypos=1\relax%
+    \beamer@ypos@offset=0\relax%
+    \hbox to #1{\hskip\sidenavleftmargin%
+    \setbox\beamer@sectionbox=\hbox{\kern1sp}%
+      \ht\beamer@sectionbox=1.875ex%
+      \dp\beamer@sectionbox=0.75ex%
+        \hskip-1.875ex plus-1fill%
+        \global\beamer@section@min@dim\z@
+        \dohead%
+        \beamer@section@set@min@width
+      \box\beamer@sectionbox\hfil\hskip\sidenavrightmargin}%
+  }}}
+
+\makeatother
+
+\newlength{\mysidebarheight}
+\setlength{\mysidebarheight}{0.85\paperheight}
+
+\setbeamertemplate{sidebar right}
+{
+\vskip25pt
+    \rotatebox{270}
+    {{
+        \scalebox{1}[-1]{
+            \begin{beamercolorbox}[wd=\the\mysidebarheight,ht=\the\navWidth,dp=0.0ex]{date in head/foot}
+            \insertsidebarnavigation{\the\mysidebarheight}{\the\navWidth}
+            \end{beamercolorbox}
+        }
+    }}
+}
+
+\setbeamertemplate{sidebar canvas right}[vertical shading][top=TechMediumGold,bottom=TechMediumGold]
+\setbeamersize{sidebar width right=\the\navWidth}
+\setbeamercolor{logo}{bg=TechMediumGold}
+
+\setbeamertemplate{frametitle}[default]
+
+\setbeamercolor{sidebar right}{bg=white, fg=white}
+\setbeamercolor{section in head/foot}{bg=white,fg=white}
+\setbeamercolor{section in head/foot shaded}{bg=white,fg=white}
+\setbeamertemplate{section in head/foot shaded}[default][0]
+
+\setbeamercolor{background canvas}{bg=Diploma}
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+\setbeamertemplate{sections/subsections in toc}[circle]
+
+\setbeamercolor{item projected}{bg=TechDarkGold}
+\setbeamercolor{itemize item}{bg=TechDarkGold}
+
+\setbeamerfont{item projected}{series=\bfseries}
+\setbeamerfont{section number projected}{series=\bfseries}
+
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamercovered{transparent}
+
+\usepackage{etoolbox}
+
+% Put section title in footline
+\makeatletter
+\setbeamertemplate{footline}
+{%
+  \hbox to \paperwidth{%
+  \begin{beamercolorbox}[wd=.291\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.291\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot} $|$~\insertsection~$|$~\insertsubsection
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.291\paperwidth,ht=2.25ex,dp=1ex,leftskip=2ex,rightskip=2ex,sep=0pt]{date in head/foot}%
+    \centering
+    \usebeamerfont{date in head/foot}%
+    \insertshortdate{}%
+  \end{beamercolorbox}%
+  \hfill
+  \begin{beamercolorbox}[wd=\the\navWidth,ht=2.25ex,dp=1ex,leftskip=0ex,rightskip=2ex,sep=0pt]{date in head/foot}%
+    \hfill%
+    \usebeamercolor[fg]{page number in head/foot}%
+    \usebeamerfont{page number in head/foot}%
+    \usebeamertemplate{page number in head/foot}%
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+
+
+\setbeamertemplate{section page}
+{
+    \centering
+    \begin{beamercolorbox}[sep=12pt,center,shadow,rounded=true]{section title}
+      \usebeamerfont{section title}\insertsection\par
+    \end{beamercolorbox}
+}
+
+\makeatletter
+\AtBeginSection[]  % "Beamer, do the following at the start of every section"
+{
+\ifnum \value{section}>1
+    {{
+    \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
+    \begin{frame}<beamer>
+      \sectionpage
+    \end{frame}
+    }}
+\else
+\fi
+}
+\makeatother
+
+\newcommand{\paragraph}[1]{\textbf{#1}}
+
+\newenvironment{figure*}%
+{\begin{figure}}
+{\end{figure}}
+
+
+\addbibresource{references.bib}
+% prevent certain fields in references from printing in bibliography
+\AtEveryBibitem{\clearfield{issn}}
+\AtEveryBibitem{\clearlist{issn}}
+\AtEveryBibitem{\clearfield{language}}
+\AtEveryBibitem{\clearlist{language}}
+\AtEveryBibitem{\clearfield{doi}}
+\AtEveryBibitem{\clearlist{doi}}
+\AtEveryBibitem{\clearfield{url}}
+\AtEveryBibitem{\clearlist{url}}
+\AtEveryBibitem{\clearfield{abstract}}
+\AtEveryBibitem{\clearlist{abstract}}
+\AtEveryBibitem{\clearfield{editor}}
+\AtEveryBibitem{\clearlist{editor}}
+\AtEveryBibitem{\clearfield{month}}
+\AtEveryBibitem{\clearlist{month}}
+\AtEveryBibitem{\clearfield{day}}
+\AtEveryBibitem{\clearlist{day}}
+\AtEveryBibitem{\clearfield{isbn}}
+\AtEveryBibitem{\clearlist{isbn}}
+\AtEveryBibitem{%
+\ifentrytype{online}{}
+    {\clearfield{urlyear}\clearfield{urlmonth}\clearfield{urlday}}}
+
+\setbeamertemplate{bibliography item}{}
+\setbeamertemplate{frametitle continuation}[from second][\insertcontinuationcount]
+
+\setlength\bibitemsep{\baselineskip}
+
+\makeatletter
+\pretocmd\beamer@framenotesbegin{
+    \ifbeamer@plainframe%
+        \advance\textwidth\beamer@sidebarwidth
+        \hsize\textwidth
+        \columnwidth\textwidth
+        \linewidth\hsize
+    \fi
+}{}
+\makeatother
+
+\newcolumntype{H}{>{\setbox0=\hbox\bgroup}c<{\egroup}@{}}
+% H@{\hspace*{-\tabcolsep}}
+
+\definecolor{BADCOLOR}{RGB}{164, 16, 16}
+\definecolor{WEIRDCOLOR}{RGB}{164, 86, 16}
+
+\newcommand{\MyWeird}[1]{\textcolor{WEIRDCOLOR}{#1}}
+
+\newcommand{\MyMissing}[1]{\textcolor{BADCOLOR}{#1}}
+\def\MyMissingX{\MyMissing{$\pmb{\times}$}}
+\def\MyMissingFake{\MyMissing{fake}}
+\def\MyMissingTravelTimes{\MyMissing{times}}
+
+% \setbeameroption{show notes}
+% \setbeameroption{show notes on second screen}
+% \setbeamertemplate{note page}[plain]
+% \setbeamerfont{note page}{size=\footnotesize}
+
+\usepackage{array}

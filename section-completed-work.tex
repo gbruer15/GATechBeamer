@@ -1,0 +1,29 @@
+
+\subsection{Test scenario}
+
+\begin{frame}{Test scenario: ground-truth}
+\begin{columns}
+\begin{column}{0.5\linewidth}
+\centering
+\only<1>{\includegraphics[width=0.6\linewidth]{example-image-a}}%
+\only<2>{\includegraphics[width=0.6\linewidth]{example-image-b}}%
+\only<3>{\includegraphics[width=0.6\linewidth]{example-image-c}}
+\end{column}
+\begin{column}{0.5\linewidth}
+\centering
+\only<1>{\includegraphics[width=0.6\linewidth]{example-image-a}}%
+\only<2>{\includegraphics[width=0.6\linewidth]{example-image-b}}%
+\only<3>{\includegraphics[width=0.6\linewidth]{example-image-c}}
+\end{column}
+\end{columns}
+
+\centering
+
+\settoheight{\imageheight}{
+\includegraphics[width=0.4\linewidth]{example-image-c}
+}
+\only<1>{\includegraphics[height=\imageheight]{example-image-c}}%
+\only<2>{\includegraphics[height=\imageheight]{example-image-b}}%
+\only<3>{\includegraphics[height=\imageheight]{example-image-a}}%
+\includegraphics[height=\imageheight,width=0.5cm]{example-image-16x9}
+\end{frame}
