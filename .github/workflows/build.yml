@@ -22,8 +22,9 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
-          args: --output-directory=output
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode --output-directory=output
       - name: Upload artifact
+        if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v3
         with:
           path: 'output'
