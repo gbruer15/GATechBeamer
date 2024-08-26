@@ -22,7 +22,7 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
-          working_directory: output
+          args: --output-directory=output
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
