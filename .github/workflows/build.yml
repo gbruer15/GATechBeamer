@@ -1,0 +1,26 @@
+name: Build PDF
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Call latexmk
+        run: latexmk -cd -f -pdf -interaction=nonstopmode -synctex=1 --output-directory=output main.tex
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: 'output'
